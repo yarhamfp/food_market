@@ -185,7 +185,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                             SizedBox(
                               width: 163,
                               height: 45,
-                              child: RaisedButton(
+                              child: ElevatedButton(
                                 onPressed: () {
                                   Get.to(PaymentPage(
                                     transaction: widget.transaction.copyWith(
@@ -194,10 +194,12 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                                             widget.transaction.food.price),
                                   ));
                                 },
-                                color: mainColor,
-                                elevation: 0,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
+                                style: ElevatedButton.styleFrom(
+                                  primary: mainColor,
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8)),
+                                ),
                                 child: Text(
                                   'Order Now',
                                   style: blackFontStyle3.copyWith(

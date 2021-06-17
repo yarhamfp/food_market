@@ -79,7 +79,7 @@ class _FoodPageState extends State<FoodPage> {
                                               transaction: Transaction(
                                                   food: e,
                                                   user: (context
-                                                          .bloc<UserCubit>()
+                                                          .read<UserCubit>()
                                                           .state as UserLoaded)
                                                       .user),
                                               onBackButtonPressed: () {
@@ -130,8 +130,23 @@ class _FoodPageState extends State<FoodPage> {
                             .map((e) => Padding(
                                   padding: EdgeInsets.fromLTRB(
                                       defaultMargin, 0, defaultMargin, 16),
-                                  child: FoodListItem(
-                                      food: e, itemWidth: listItemWidth),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Get.to(FoodDetailsPage(
+                                        transaction: Transaction(
+                                            food: e,
+                                            user: (context
+                                                    .read<UserCubit>()
+                                                    .state as UserLoaded)
+                                                .user),
+                                        onBackButtonPressed: () {
+                                          Get.back();
+                                        },
+                                      ));
+                                    },
+                                    child: FoodListItem(
+                                        food: e, itemWidth: listItemWidth),
+                                  ),
                                 ))
                             .toList(),
                       );
